@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Users\Schemas;
 
+use App\Filament\Plugins\CustomHeadingPlugin;
 use Filament\Forms\Components\RichEditor;
 use Filament\Schemas\Schema;
 
@@ -12,19 +13,11 @@ class UserForm
         return $schema
             ->components([
                 RichEditor::make('bio')
-                    ->floatingToolbars([
-                        'table' => [
-                            'tableAddColumnBefore', 'tableAddColumnAfter', 'tableDeleteColumn',
-                            'tableAddRowBefore', 'tableAddRowAfter', 'tableDeleteRow',
-                            'tableMergeCells', 'tableSplitCell',
-                            'tableToggleHeaderRow', 'tableToggleHeaderCell',
-                            'tableDelete',
-                        ],
-                        'paragraph' => [
-                            'bold', 'italic', 'underline', 'link'
-                        ],
-                    ])
                     ->columnSpanFull()
+                    ->json()
+                    ->plugins([
+                        CustomHeadingPlugin::make(),
+                    ])
             ]);
     }
 }
