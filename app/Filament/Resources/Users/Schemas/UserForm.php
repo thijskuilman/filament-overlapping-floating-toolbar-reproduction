@@ -11,7 +11,20 @@ class UserForm
     {
         return $schema
             ->components([
-               //
+                RichEditor::make('bio')
+                    ->floatingToolbars([
+                        'table' => [
+                            'tableAddColumnBefore', 'tableAddColumnAfter', 'tableDeleteColumn',
+                            'tableAddRowBefore', 'tableAddRowAfter', 'tableDeleteRow',
+                            'tableMergeCells', 'tableSplitCell',
+                            'tableToggleHeaderRow', 'tableToggleHeaderCell',
+                            'tableDelete',
+                        ],
+                        'paragraph' => [
+                            'bold', 'italic', 'underline', 'link'
+                        ],
+                    ])
+                    ->columnSpanFull()
             ]);
     }
 }
